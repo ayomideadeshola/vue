@@ -17,6 +17,7 @@ const cartStore = useCartStore();
           <router-link to="/" class="hover:text-yellow-400">Counter</router-link>
           <router-link to="/product" class="hover:text-yellow-400">Product</router-link>
           <router-link to="/blog" class="hover:text-yellow-400">Blog</router-link>
+          <router-link to="/weather-app" class="hover:text-yellow-400">Weather-App</router-link>
         </div>
         <router-link to="/cart" class="font-bold text-md">CART:{{ cartStore.cartCount }}</router-link>
       </div>

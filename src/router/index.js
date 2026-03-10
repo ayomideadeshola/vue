@@ -6,6 +6,7 @@ import Post from '@/views/Post.vue'
 import About from '@/views/About.vue'
 import Blog from '@/views/Blog.vue'
 import Cart from '@/views/Cart.vue'
+import Weather from '@/views/Weather.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +14,7 @@ const router = createRouter({
     { path: '/', component: Counter },
     { path: '/product', component: Product },
     { path: '/cart', component: Cart },
+    { path: '/weather-app', component: Weather },
     {
       path: '/blog',
       component: Blog,

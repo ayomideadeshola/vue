@@ -6,7 +6,11 @@ const props = defineProps(["productdetails"])
 const cartStore = useCartStore()
 
 const addToCart = () => {
-    cartStore.addToCart(props.productdetails)
+
+    const existProduct = cartStore.cart.find(item => item.id === props.productdetails.id)
+    if (!existProduct) {
+        cartStore.addToCart(props.productdetails)
+    }
 }
 
 const removeFromCart = () => {
