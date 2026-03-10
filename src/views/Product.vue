@@ -20,7 +20,7 @@ onMounted(() => {
         <span class="block w-3 h-3 rounded-full bg-indigo-500 animate-bounce [animation-delay:0.45s]"></span>
     </div>
     <div v-show="!isLoading" class="px-4">
-        <div class="grid grid-cols-3 pt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 pt-20">
             <ProductCard class="mx-auto" v-for="(items, index) in products" :key="index" :productdetails="items" />
         </div>
     </div>

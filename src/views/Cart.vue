@@ -1,7 +1,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/auth";
 
 const cartItems = ref([])
+const router = useRouter()
+const authStore = useAuthStore()
 
 onMounted(() => {
     const stored = localStorage.getItem("cart")
@@ -53,6 +57,16 @@ const tax = computed(() =>
 const total = computed(() =>
     subtotal.value + shipping.value + tax.value
 )
+
+function handleCheckout() {
+    if (!authStore.isLoggedIn) {
+        router.push('/login')
+    } else {
+        alert(`Order Confirmed! Total: $${total.value.toFixed(2)}`)
+        cartItems.value = []
+        localStorage.removeItem('cart')
+    }
+}
 </script>
 <template>
     <div class="min-h-screen bg-gray-50 p-6">
@@ -120,9 +134,9 @@ const total = computed(() =>
                     Add ${{ (100 - subtotal).toFixed(2) }} more for free shipping
                 </p>
 
-                <button :disabled="cartItems.length === 0"
+                <button @click="handleCheckout" :disabled="cartItems.length === 0"
                     class="w-full bg-blue-600 cursor-pointer hover:bg-blue-700 disabled:opacity-40 text-white text-sm font-semibold py-3 rounded-lg transition">
-                    Checkout
+                    {{ authStore.isLoggedIn ? 'Checkout' : 'Login to Checkout' }}
                 </button>
             </div>
 

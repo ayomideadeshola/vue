@@ -72,7 +72,8 @@ onMounted(() => {
                 <input v-model="city" @keyup.enter="getWeatherByCity" placeholder="Search city..."
                     class="flex-1 px-3 py-2 rounded text-gray-100" />
 
-                <button @click="getWeatherByCity" class="bg-white text-blue-600 px-4 py-2 rounded font-semibold">
+                <button @click="getWeatherByCity"
+                    class="bg-white cursor-pointer text-blue-600 px-4 py-2 rounded font-semibold">
                     Search
                 </button>
             </div>

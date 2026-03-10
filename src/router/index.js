@@ -7,6 +7,10 @@ import About from '@/views/About.vue'
 import Blog from '@/views/Blog.vue'
 import Cart from '@/views/Cart.vue'
 import Weather from '@/views/Weather.vue'
+import GitHub from '@/views/GitHub.vue'
+import Login from '@/views/Login.vue'
+import Register from '@/views/Register.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +19,9 @@ const router = createRouter({
     { path: '/product', component: Product },
     { path: '/cart', component: Cart },
     { path: '/weather-app', component: Weather },
+    { path: '/github', component: GitHub },
+    { path: '/login', component: Login },
+    { path: '/register', component: Register },
     {
       path: '/blog',
       component: Blog,
@@ -34,6 +41,20 @@ const router = createRouter({
       ],
     },
   ],
+})
+
+// Route guard to check authentication
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  
+  // List of protected routes
+  const protectedRoutes = ['/checkout']
+  
+  if (protectedRoutes.includes(to.path) && !authStore.isLoggedIn) {
+    next(`/login?redirect=${to.path}`)
+  } else {
+    next()
+  }
 })
 
 export default router
